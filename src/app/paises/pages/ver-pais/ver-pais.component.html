@@ -1,0 +1,64 @@
+<div class="alert alert-info animate__animated animate__fadeIn" *ngIf="!pais; else paisDiv">
+    Espere por favor....
+</div>
+<div class="animate__animated animate__bounceIn">
+    <ng-template  #paisDiv>
+        <div class="row">
+            <div class="col-10">
+                <h1>Pais: <small>{{pais.name}}</small></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <h3>Bandera</h3>
+                <img [src]="pais.flag" class="img-thumbnail">
+            </div>
+            <div class="col-8">
+                <h3>Informacion</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Poblacion</strong> {{pais.population | number}}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Codigo numerico</strong> {{pais.numericCode }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Codigo alpha3</strong> {{pais.alpha3Code }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Tipo de moneda</strong> {{pais.currencies[0].name }}
+                        <strong>Simbolo</strong> {{pais.currencies[0].symbol }}
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-3 justify-content-center">
+            <div class="col-10">
+                <!-- [center]="{lat:9.0817275, lng: -79.5932217 }" panama -->
+                <google-map height="300px"
+                width="100%"
+                [zoom]="6" [center]="{lat: pais.latlng[0], lng: pais.latlng[1]}">
+                <map-marker [position]="{lat: pais.latlng[0], lng: pais.latlng[1] }"></map-marker>
+            </google-map>
+            </div> 
+        </div>
+        <h3>Traducciones</h3>
+        <div class="row">
+            <div class="col-10">
+                <span class="badge bg-primary mr-1">{{pais.translations.de}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.es}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.fr}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.ja}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.it}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.nl}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.br}}</span>
+                <span class="badge bg-primary mr-1">{{pais.translations.fa}}</span>
+            </div>
+        </div>
+        <!-- <pre class="mt-5"> -->
+            <!--muestra el codigo como si fuera codigo -->
+            <!-- {{pais | json}}
+        </pre> -->
+    </ng-template>
+</div>

@@ -1,0 +1,34 @@
+<h2>Por pais</h2>
+<hr>
+<div class="row">
+    <div class="col-10">
+        <app-input-buscar (buscarEmit)="buscar( $event )" (onDeBounce)="sugerencias( $event )" [place]="placeholder"></app-input-buscar>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <!-- <ul class="list-group animate__animated animate__fadeIn" *ngFor="let paiseSugerido of paisesSugeridos">
+            <li class="list-group-item list-group-item-action" (click)="buscar(paiseSugerido.name)">
+                {{ paiseSugerido.name }}
+            </li>
+        </ul> -->
+        <app-lis-sugerencias [dataSugerida]="paisesSugeridos" [typeSearch]="'P'" (terminoSugerencia)="buscar($event)"></app-lis-sugerencias>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10">
+        <hr>
+    </div>
+</div>
+
+<app-div-error [showError]="showError" [data]="paisesResponse" [class]="'alert alert-danger'" [propierty_msj]="termino"></app-div-error>
+
+<!-- <div class="alert alert-danger" *ngIf="showError">
+    No se encontro nada con el temrino {{  }}  ingresado
+</div> -->
+
+<div class="row" *ngIf="!showError && paisesResponse.length > 0">
+    <div class="col-10">
+        <app-tabla  [paisesResponse]="paisesResponse"></app-tabla>
+    </div>
+</div>

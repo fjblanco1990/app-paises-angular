@@ -1,0 +1,5 @@
+<ul class="list-group animate__animated animate__fadeIn " *ngFor="let data of dataSugerida">
+    <li class="list-group-item list-group-item-action" (click)="buscarSugerencia(data)">
+        {{ data.name }}
+    </li>
+</ul>
